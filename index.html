@@ -316,6 +316,307 @@
                                 <span>💻 Solución en R</span>
                                 <button class="copy-btn" onclick="copiarCodigo(this)">Copiar</button>
                             </div>
+            
+            <!-- BLOQUE 7 -->
+            <div class="bloque" id="bloque7">
+                <h2>BLOQUE 7: Ejercicios Integradores</h2>
+                
+                <div class="ejercicio">
+                    <h3>Ejercicio Integrador 1: Análisis de Tienda Online</h3>
+                    <p>Crea un análisis completo de una tienda con productos, precios, cantidades y categorías. Realiza cálculos de ingresos y visualizaciones.</p>
+                    
+                    <button class="toggle-solucion" onclick="toggleSolucion(this)">Ver Solución</button>
+                    <div class="solucion-contenido">
+                        <div class="solucion">
+                            <div class="solucion-header">
+                                <span>💻 Solución en R</span>
+                                <button class="copy-btn" onclick="copiarCodigo(this)">Copiar</button>
+                            </div>
+                            <code><pre><span class="comment"># Crear datos</span>
+tienda <span class="keyword">&lt;-</span> <span class="function">data.frame</span>(
+  producto = <span class="function">c</span>(<span class="string">"Laptop"</span>, <span class="string">"Mouse"</span>, <span class="string">"Teclado"</span>, <span class="string">"Monitor"</span>, <span class="string">"Impresora"</span>, 
+               <span class="string">"Webcam"</span>, <span class="string">"Auriculares"</span>, <span class="string">"USB"</span>),
+  precio = <span class="function">c</span>(<span class="number">800</span>, <span class="number">25</span>, <span class="number">50</span>, <span class="number">300</span>, <span class="number">200</span>, <span class="number">45</span>, <span class="number">60</span>, <span class="number">15</span>),
+  cantidad_vendida = <span class="function">c</span>(<span class="number">15</span>, <span class="number">120</span>, <span class="number">80</span>, <span class="number">30</span>, <span class="number">25</span>, <span class="number">50</span>, <span class="number">70</span>, <span class="number">150</span>),
+  categoria = <span class="function">c</span>(<span class="string">"Computadoras"</span>, <span class="string">"Accesorios"</span>, <span class="string">"Accesorios"</span>, 
+                <span class="string">"Computadoras"</span>, <span class="string">"Periféricos"</span>, <span class="string">"Accesorios"</span>,
+                <span class="string">"Accesorios"</span>, <span class="string">"Accesorios"</span>)
+)
+
+<span class="comment"># Calcular ingresos</span>
+tienda$ingresos <span class="keyword">&lt;-</span> tienda$precio * tienda$cantidad_vendida
+
+<span class="comment"># Producto con mayores ingresos</span>
+producto_top <span class="keyword">&lt;-</span> tienda[<span class="function">which.max</span>(tienda$ingresos), ]
+<span class="function">print</span>(<span class="function">paste</span>(<span class="string">"Producto top:"</span>, producto_top$producto, 
+            <span class="string">"con ingresos de"</span>, producto_top$ingresos, <span class="string">"€"</span>))
+
+<span class="comment"># Ingresos totales</span>
+total_ingresos <span class="keyword">&lt;-</span> <span class="function">sum</span>(tienda$ingresos)
+<span class="function">print</span>(<span class="function">paste</span>(<span class="string">"Ingresos totales:"</span>, total_ingresos, <span class="string">"€"</span>))
+
+<span class="comment"># Precio promedio por categoría</span>
+<span class="function">aggregate</span>(precio ~ categoria, <span class="keyword">data</span> = tienda, <span class="keyword">FUN</span> = mean)
+
+<span class="comment"># Ingresos por categoría</span>
+ingresos_categoria <span class="keyword">&lt;-</span> <span class="function">aggregate</span>(ingresos ~ categoria, <span class="keyword">data</span> = tienda, <span class="keyword">FUN</span> = sum)
+<span class="function">print</span>(ingresos_categoria)
+
+<span class="comment"># Visualización</span>
+<span class="function">par</span>(<span class="keyword">mfrow</span> = <span class="function">c</span>(<span class="number">1</span>, <span class="number">2</span>))
+<span class="function">barplot</span>(tienda$ingresos, <span class="keyword">names.arg</span> = tienda$producto, 
+        <span class="keyword">main</span> = <span class="string">"Ingresos por Producto"</span>, 
+        <span class="keyword">col</span> = <span class="function">rainbow</span>(<span class="number">8</span>), <span class="keyword">las</span> = <span class="number">2</span>, <span class="keyword">cex.names</span> = <span class="number">0.7</span>)
+
+<span class="function">barplot</span>(ingresos_categoria$ingresos, 
+        <span class="keyword">names.arg</span> = ingresos_categoria$categoria,
+        <span class="keyword">main</span> = <span class="string">"Ingresos por Categoría"</span>,
+        <span class="keyword">col</span> = <span class="function">c</span>(<span class="string">"coral"</span>, <span class="string">"lightblue"</span>, <span class="string">"lightgreen"</span>),
+        <span class="keyword">las</span> = <span class="number">2</span>)
+
+<span class="comment"># Productos más vendidos (>50 unidades)</span>
+productos_populares <span class="keyword">&lt;-</span> tienda[tienda$cantidad_vendida > <span class="number">50</span>, ]
+<span class="function">print</span>(productos_populares)</pre></code>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="ejercicio">
+                    <h3>Ejercicio Integrador 2: Simulación de Notas</h3>
+                    <p>Genera datos aleatorios de estudiantes, calcula estadísticas y crea visualizaciones completas.</p>
+                    
+                    <button class="toggle-solucion" onclick="toggleSolucion(this)">Ver Solución</button>
+                    <div class="solucion-contenido">
+                        <div class="solucion">
+                            <div class="solucion-header">
+                                <span>💻 Solución en R</span>
+                                <button class="copy-btn" onclick="copiarCodigo(this)">Copiar</button>
+                            </div>
+                            <code><pre><span class="comment"># Función para generar notas aleatorias</span>
+generar_notas <span class="keyword">&lt;-</span> <span class="keyword">function</span>(n_estudiantes, media = <span class="number">7</span>, sd = <span class="number">1.5</span>) {
+  notas <span class="keyword">&lt;-</span> <span class="function">rnorm</span>(n_estudiantes, <span class="keyword">mean</span> = media, <span class="keyword">sd</span> = sd)
+  notas <span class="keyword">&lt;-</span> <span class="function">pmax</span>(<span class="number">0</span>, <span class="function">pmin</span>(<span class="number">10</span>, notas))  <span class="comment"># Limitar entre 0 y 10</span>
+  <span class="keyword">return</span>(<span class="function">round</span>(notas, <span class="number">2</span>))
+}
+
+<span class="comment"># Generar clase de 30 estudiantes</span>
+<span class="function">set.seed</span>(<span class="number">123</span>)
+clase <span class="keyword">&lt;-</span> <span class="function">data.frame</span>(
+  id = <span class="number">1</span>:<span class="number">30</span>,
+  nombre = <span class="function">paste</span>(<span class="string">"Estudiante"</span>, <span class="number">1</span>:<span class="number">30</span>),
+  nota_parcial1 = <span class="function">generar_notas</span>(<span class="number">30</span>, <span class="keyword">media</span> = <span class="number">7</span>),
+  nota_parcial2 = <span class="function">generar_notas</span>(<span class="number">30</span>, <span class="keyword">media</span> = <span class="number">7.5</span>),
+  nota_final = <span class="function">generar_notas</span>(<span class="number">30</span>, <span class="keyword">media</span> = <span class="number">7.2</span>)
+)
+
+<span class="comment"># Calcular nota media de cada estudiante</span>
+clase$nota_media <span class="keyword">&lt;-</span> <span class="function">round</span>((clase$nota_parcial1 + 
+                           clase$nota_parcial2 + 
+                           clase$nota_final) / <span class="number">3</span>, <span class="number">2</span>)
+
+<span class="comment"># Clasificar estudiantes</span>
+clase$clasificacion <span class="keyword">&lt;-</span> <span class="function">cut</span>(clase$nota_media, 
+                           <span class="keyword">breaks</span> = <span class="function">c</span>(<span class="number">0</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">9</span>, <span class="number">10</span>),
+                           <span class="keyword">labels</span> = <span class="function">c</span>(<span class="string">"Suspenso"</span>, <span class="string">"Aprobado"</span>, 
+                                     <span class="string">"Notable"</span>, <span class="string">"Sobresaliente"</span>))
+
+<span class="comment"># Estadísticas</span>
+<span class="function">print</span>(<span class="function">paste</span>(<span class="string">"Nota media de la clase:"</span>, <span class="function">round</span>(<span class="function">mean</span>(clase$nota_media), <span class="number">2</span>)))
+<span class="function">print</span>(<span class="function">paste</span>(<span class="string">"Nota máxima:"</span>, <span class="function">max</span>(clase$nota_media)))
+<span class="function">print</span>(<span class="function">paste</span>(<span class="string">"Nota mínima:"</span>, <span class="function">min</span>(clase$nota_media)))
+<span class="function">print</span>(<span class="function">paste</span>(<span class="string">"Aprobados:"</span>, <span class="function">sum</span>(clase$nota_media >= <span class="number">5</span>)))
+<span class="function">print</span>(<span class="function">paste</span>(<span class="string">"Suspensos:"</span>, <span class="function">sum</span>(clase$nota_media < <span class="number">5</span>)))
+
+<span class="comment"># Tabla de clasificaciones</span>
+<span class="function">table</span>(clase$clasificacion)
+
+<span class="comment"># Visualizaciones</span>
+<span class="function">par</span>(<span class="keyword">mfrow</span> = <span class="function">c</span>(<span class="number">2</span>, <span class="number">2</span>))
+
+<span class="function">hist</span>(clase$nota_media, 
+     <span class="keyword">main</span> = <span class="string">"Distribución de Notas Medias"</span>,
+     <span class="keyword">xlab</span> = <span class="string">"Nota"</span>, <span class="keyword">col</span> = <span class="string">"lightblue"</span>, <span class="keyword">breaks</span> = <span class="number">10</span>)
+
+<span class="function">boxplot</span>(clase[, <span class="function">c</span>(<span class="string">"nota_parcial1"</span>, <span class="string">"nota_parcial2"</span>, <span class="string">"nota_final"</span>)],
+        <span class="keyword">main</span> = <span class="string">"Comparación de Evaluaciones"</span>,
+        <span class="keyword">names</span> = <span class="function">c</span>(<span class="string">"Parcial 1"</span>, <span class="string">"Parcial 2"</span>, <span class="string">"Final"</span>),
+        <span class="keyword">col</span> = <span class="function">c</span>(<span class="string">"coral"</span>, <span class="string">"lightgreen"</span>, <span class="string">"lightblue"</span>))
+
+<span class="function">barplot</span>(<span class="function">table</span>(clase$clasificacion),
+        <span class="keyword">main</span> = <span class="string">"Estudiantes por Clasificación"</span>,
+        <span class="keyword">col</span> = <span class="function">c</span>(<span class="string">"red"</span>, <span class="string">"yellow"</span>, <span class="string">"lightgreen"</span>, <span class="string">"darkgreen"</span>))
+
+<span class="function">plot</span>(clase$nota_parcial1, clase$nota_final,
+     <span class="keyword">main</span> = <span class="string">"Parcial 1 vs Final"</span>,
+     <span class="keyword">xlab</span> = <span class="string">"Nota Parcial 1"</span>, <span class="keyword">ylab</span> = <span class="string">"Nota Final"</span>,
+     <span class="keyword">pch</span> = <span class="number">19</span>, <span class="keyword">col</span> = <span class="string">"blue"</span>)
+<span class="function">abline</span>(<span class="function">lm</span>(clase$nota_final ~ clase$nota_parcial1), <span class="keyword">col</span> = <span class="string">"red"</span>, <span class="keyword">lwd</span> = <span class="number">2</span>)
+
+<span class="comment"># Top 5 estudiantes</span>
+top5 <span class="keyword">&lt;-</span> clase[<span class="function">order</span>(-clase$nota_media), ][<span class="number">1</span>:<span class="number">5</span>, <span class="function">c</span>(<span class="string">"nombre"</span>, <span class="string">"nota_media"</span>)]
+<span class="function">print</span>(<span class="string">"Top 5 estudiantes:"</span>)
+<span class="function">print</span>(top5)</pre></code>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- RESUMEN FINAL -->
+            <div class="resumen">
+                <h2>📚 Resumen de Contenidos</h2>
+                <h3>Has completado los ejercicios de R cubriendo:</h3>
+                <ul>
+                    <li><strong>Bloque 1:</strong> Operaciones básicas, variables y cálculos</li>
+                    <li><strong>Bloque 2:</strong> Creación, manipulación e indexación de vectores</li>
+                    <li><strong>Bloque 3:</strong> Matrices, operaciones matriciales e indexación</li>
+                    <li><strong>Bloque 4:</strong> Data frames, filtrado, selección y modificación</li>
+                    <li><strong>Bloque 5:</strong> Condicionales, bucles y funciones personalizadas</li>
+                    <li><strong>Bloque 6:</strong> Visualización con gráficos de líneas, barras, histogramas y dispersión</li>
+                    <li><strong>Bloque 7:</strong> Ejercicios integradores combinando todos los conceptos</li>
+                </ul>
+                
+                <h3 style="margin-top: 30px;">🎯 Conceptos Clave Dominados:</h3>
+                <ul>
+                    <li>Tipos de datos y estructuras (vectores, matrices, data frames)</li>
+                    <li>Operadores aritméticos y lógicos</li>
+                    <li>Funciones estadísticas (mean, median, sd, sum, etc.)</li>
+                    <li>Control de flujo (if/else, for, while)</li>
+                    <li>Creación de funciones personalizadas</li>
+                    <li>Manipulación y transformación de datos</li>
+                    <li>Visualización de datos con gráficos base de R</li>
+                    <li>Análisis exploratorio de datos</li>
+                </ul>
+                
+                <h3 style="margin-top: 30px;">💡 Consejos para Seguir Practicando:</h3>
+                <ul>
+                    <li>Practica regularmente con ejercicios similares</li>
+                    <li>Modifica los ejercicios cambiando valores y parámetros</li>
+                    <li>Crea tus propios datasets y analízalos</li>
+                    <li>Explora paquetes adicionales como ggplot2, dplyr y tidyr</li>
+                    <li>Trabaja con datos reales de tu campo de estudio</li>
+                    <li>Documenta tu código con comentarios claros</li>
+                    <li>Comparte tu trabajo y colabora con otros</li>
+                </ul>
+                
+                <h3 style="margin-top: 30px;">📖 Recursos Adicionales:</h3>
+                <ul>
+                    <li>Documentación oficial de R: <code>?nombre_funcion</code></li>
+                    <li>R para Ciencia de Datos (libro gratuito online)</li>
+                    <li>Comunidad Stack Overflow para resolver dudas</li>
+                    <li>Kaggle para datasets y competencias</li>
+                    <li>RStudio Cheat Sheets (hojas de referencia rápida)</li>
+                </ul>
+            </div>
+        </main>
+        
+        <footer>
+            <p>📊 Ejercicios de R | Práctica completa</p>
+            <p>🎓 ¡Sigue practicando y mejorando tus habilidades en R!</p>
+            <p style="margin-top: 10px; font-size: 0.9em;">Última actualización: 2025</p>
+        </footer>
+    </div>
+    
+    <script>
+        function toggleSolucion(button) {
+            const contenido = button.nextElementSibling;
+            contenido.classList.toggle('active');
+            
+            if (contenido.classList.contains('active')) {
+                button.textContent = 'Ocultar Solución';
+                button.style.background = '#764ba2';
+            } else {
+                button.textContent = 'Ver Solución';
+                button.style.background = '#667eea';
+            }
+        }
+        
+        function copiarCodigo(button) {
+            const solucionDiv = button.closest('.solucion');
+            const codigo = solucionDiv.querySelector('pre').textContent;
+            
+            navigator.clipboard.writeText(codigo).then(function() {
+                button.textContent = '✓ Copiado';
+                button.style.background = '#4CAF50';
+                button.style.color = 'white';
+                
+                setTimeout(function() {
+                    button.textContent = 'Copiar';
+                    button.style.background = 'white';
+                    button.style.color = '#667eea';
+                }, 2000);
+            }).catch(function(err) {
+                console.error('Error al copiar:', err);
+                button.textContent = '✗ Error';
+                button.style.background = '#f44336';
+                button.style.color = 'white';
+                
+                setTimeout(function() {
+                    button.textContent = 'Copiar';
+                    button.style.background = 'white';
+                    button.style.color = '#667eea';
+                }, 2000);
+            });
+        }
+        
+        // Smooth scroll para la navegación
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            });
+        });
+        
+        // Mostrar progreso de scroll
+        window.addEventListener('scroll', function() {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            
+            // Opcional: crear barra de progreso
+            if (!document.getElementById('progressBar')) {
+                const progressBar = document.createElement('div');
+                progressBar.id = 'progressBar';
+                progressBar.style.cssText = `
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: ${scrolled}%;
+                    height: 4px;
+                    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+                    z-index: 1000;
+                    transition: width 0.1s ease;
+                `;
+                document.body.appendChild(progressBar);
+            } else {
+                document.getElementById('progressBar').style.width = scrolled + '%';
+            }
+        });
+        
+        // Contador de ejercicios completados
+        let ejerciciosCompletados = 0;
+        const totalEjercicios = document.querySelectorAll('.ejercicio').length;
+        
+        document.querySelectorAll('.toggle-solucion').forEach(button => {
+            button.addEventListener('click', function() {
+                if (!this.classList.contains('contado')) {
+                    ejerciciosCompletados++;
+                    this.classList.add('contado');
+                    console.log(`Ejercicios vistos: ${ejerciciosCompletados}/${totalEjercicios}`);
+                }
+            });
+        });
+        
+        // Imprimir bienvenida en consola
+        console.log('%c📊 Bienvenido a los Ejercicios de R', 'color: #667eea; font-size: 20px; font-weight: bold;');
+        console.log('%cPráctica completa | ' + totalEjercicios + ' ejercicios', 'color: #764ba2; font-size: 14px;');
+        console.log('%c¡Buena suerte con tu aprendizaje!', 'color: #2c3e50; font-size: 12px;');
+    </script>
+</body>
+</html>
                             <code><pre>A <span class="keyword">&lt;-</span> <span class="function">matrix</span>(<span class="number">1</span>:<span class="number">9</span>, <span class="keyword">nrow</span> = <span class="number">3</span>, <span class="keyword">ncol</span> = <span class="number">3</span>, <span class="keyword">byrow</span> = <span class="keyword">TRUE</span>)
 B <span class="keyword">&lt;-</span> <span class="function">matrix</span>(<span class="number">9</span>:<span class="number">1</span>, <span class="keyword">nrow</span> = <span class="number">3</span>, <span class="keyword">ncol</span> = <span class="number">3</span>, <span class="keyword">byrow</span> = <span class="keyword">TRUE</span>)
 
@@ -370,6 +671,272 @@ submatriz <span class="keyword">&lt;-</span> matriz[<span class="number">1</span
 
 matriz[<span class="number">1</span>, ] <span class="keyword">&lt;-</span> matriz[<span class="number">1</span>, ] + <span class="number">10</span>
 <span class="function">print</span>(matriz)</pre></code>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="ejercicio">
+                    <h3>Ejercicio 5.3: Bucles while</h3>
+                    <ol>
+                        <li>Suma números del 1 en adelante hasta que la suma supere 100</li>
+                        <li>Cuenta cuántos números necesitas sumar del 1 en adelante para superar 500</li>
+                        <li>Genera números aleatorios entre 1 y 10 hasta obtener un 7</li>
+                        <li>Simula el lanzamiento de un dado hasta sacar un 6 y cuenta los intentos</li>
+                    </ol>
+                    
+                    <button class="toggle-solucion" onclick="toggleSolucion(this)">Ver Solución</button>
+                    <div class="solucion-contenido">
+                        <div class="solucion">
+                            <div class="solucion-header">
+                                <span>💻 Solución en R</span>
+                                <button class="copy-btn" onclick="copiarCodigo(this)">Copiar</button>
+                            </div>
+                            <code><pre><span class="comment"># 1</span>
+suma <span class="keyword">&lt;-</span> <span class="number">0</span>
+i <span class="keyword">&lt;-</span> <span class="number">1</span>
+<span class="keyword">while</span> (suma <= <span class="number">100</span>) {
+  suma <span class="keyword">&lt;-</span> suma + i
+  i <span class="keyword">&lt;-</span> i + <span class="number">1</span>
+}
+<span class="function">print</span>(<span class="function">paste</span>(<span class="string">"Suma:"</span>, suma, <span class="string">"con"</span>, i<span class="number">-1</span>, <span class="string">"números"</span>))
+
+<span class="comment"># 2</span>
+suma <span class="keyword">&lt;-</span> <span class="number">0</span>
+contador <span class="keyword">&lt;-</span> <span class="number">0</span>
+<span class="keyword">while</span> (suma <= <span class="number">500</span>) {
+  contador <span class="keyword">&lt;-</span> contador + <span class="number">1</span>
+  suma <span class="keyword">&lt;-</span> suma + contador
+}
+<span class="function">print</span>(<span class="function">paste</span>(<span class="string">"Se necesitan"</span>, contador, <span class="string">"números"</span>))
+
+<span class="comment"># 3</span>
+<span class="function">set.seed</span>(<span class="keyword">NULL</span>)
+numero <span class="keyword">&lt;-</span> <span class="number">0</span>
+intentos <span class="keyword">&lt;-</span> <span class="number">0</span>
+<span class="keyword">while</span> (numero != <span class="number">7</span>) {
+  numero <span class="keyword">&lt;-</span> <span class="function">sample</span>(<span class="number">1</span>:<span class="number">10</span>, <span class="number">1</span>)
+  intentos <span class="keyword">&lt;-</span> intentos + <span class="number">1</span>
+  <span class="function">print</span>(numero)
+}
+<span class="function">print</span>(<span class="function">paste</span>(<span class="string">"Se necesitaron"</span>, intentos, <span class="string">"intentos"</span>))
+
+<span class="comment"># 4</span>
+dado <span class="keyword">&lt;-</span> <span class="number">0</span>
+lanzamientos <span class="keyword">&lt;-</span> <span class="number">0</span>
+<span class="keyword">while</span> (dado != <span class="number">6</span>) {
+  dado <span class="keyword">&lt;-</span> <span class="function">sample</span>(<span class="number">1</span>:<span class="number">6</span>, <span class="number">1</span>)
+  lanzamientos <span class="keyword">&lt;-</span> lanzamientos + <span class="number">1</span>
+}
+<span class="function">print</span>(<span class="function">paste</span>(<span class="string">"Salió 6 en el intento"</span>, lanzamientos))</pre></code>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="ejercicio">
+                    <h3>Ejercicio 5.4: Crear funciones</h3>
+                    <ol>
+                        <li>Función que calcule el área de un rectángulo (base, altura)</li>
+                        <li>Función que determine si un número es primo</li>
+                        <li>Función que convierta kilómetros a millas (1 km = 0.621371 millas)</li>
+                        <li>Función que calcule el factorial de un número</li>
+                        <li>Función que devuelva el mayor de tres números</li>
+                    </ol>
+                    
+                    <button class="toggle-solucion" onclick="toggleSolucion(this)">Ver Solución</button>
+                    <div class="solucion-contenido">
+                        <div class="solucion">
+                            <div class="solucion-header">
+                                <span>💻 Solución en R</span>
+                                <button class="copy-btn" onclick="copiarCodigo(this)">Copiar</button>
+                            </div>
+                            <code><pre><span class="comment"># 1</span>
+area_rectangulo <span class="keyword">&lt;-</span> <span class="keyword">function</span>(base, altura) {
+  <span class="keyword">return</span>(base * altura)
+}
+<span class="function">area_rectangulo</span>(<span class="number">5</span>, <span class="number">3</span>)  <span class="comment"># 15</span>
+
+<span class="comment"># 2</span>
+es_primo <span class="keyword">&lt;-</span> <span class="keyword">function</span>(n) {
+  <span class="keyword">if</span> (n <= <span class="number">1</span>) <span class="keyword">return</span>(<span class="keyword">FALSE</span>)
+  <span class="keyword">if</span> (n == <span class="number">2</span>) <span class="keyword">return</span>(<span class="keyword">TRUE</span>)
+  <span class="keyword">for</span> (i <span class="keyword">in</span> <span class="number">2</span>:<span class="function">sqrt</span>(n)) {
+    <span class="keyword">if</span> (n %% i == <span class="number">0</span>) <span class="keyword">return</span>(<span class="keyword">FALSE</span>)
+  }
+  <span class="keyword">return</span>(<span class="keyword">TRUE</span>)
+}
+<span class="function">es_primo</span>(<span class="number">17</span>)  <span class="comment"># TRUE</span>
+<span class="function">es_primo</span>(<span class="number">15</span>)  <span class="comment"># FALSE</span>
+
+<span class="comment"># 3</span>
+km_a_millas <span class="keyword">&lt;-</span> <span class="keyword">function</span>(km) {
+  <span class="keyword">return</span>(km * <span class="number">0.621371</span>)
+}
+<span class="function">km_a_millas</span>(<span class="number">10</span>)  <span class="comment"># 6.21371</span>
+
+<span class="comment"># 4</span>
+factorial_num <span class="keyword">&lt;-</span> <span class="keyword">function</span>(n) {
+  <span class="keyword">if</span> (n == <span class="number">0</span> || n == <span class="number">1</span>) <span class="keyword">return</span>(<span class="number">1</span>)
+  resultado <span class="keyword">&lt;-</span> <span class="number">1</span>
+  <span class="keyword">for</span> (i <span class="keyword">in</span> <span class="number">2</span>:n) {
+    resultado <span class="keyword">&lt;-</span> resultado * i
+  }
+  <span class="keyword">return</span>(resultado)
+}
+<span class="function">factorial_num</span>(<span class="number">5</span>)  <span class="comment"># 120</span>
+
+<span class="comment"># 5</span>
+mayor_de_tres <span class="keyword">&lt;-</span> <span class="keyword">function</span>(a, b, c) {
+  <span class="keyword">return</span>(<span class="function">max</span>(a, b, c))
+}
+<span class="function">mayor_de_tres</span>(<span class="number">45</span>, <span class="number">78</span>, <span class="number">62</span>)  <span class="comment"># 78</span></pre></code>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- BLOQUE 6 -->
+            <div class="bloque" id="bloque6">
+                <h2>BLOQUE 6: Visualización Básica</h2>
+                
+                <div class="ejercicio">
+                    <h3>Ejercicio 6.1: Gráficos de líneas</h3>
+                    <ol>
+                        <li>Crea un vector de ventas mensuales: 120, 150, 180, 160, 200, 190, 210, 230, 250, 240, 260, 280</li>
+                        <li>Crea un gráfico de líneas básico</li>
+                        <li>Añade título, etiquetas de ejes y color</li>
+                        <li>Añade una línea horizontal con la media de ventas</li>
+                    </ol>
+                    
+                    <button class="toggle-solucion" onclick="toggleSolucion(this)">Ver Solución</button>
+                    <div class="solucion-contenido">
+                        <div class="solucion">
+                            <div class="solucion-header">
+                                <span>💻 Solución en R</span>
+                                <button class="copy-btn" onclick="copiarCodigo(this)">Copiar</button>
+                            </div>
+                            <code><pre>ventas_mensuales <span class="keyword">&lt;-</span> <span class="function">c</span>(<span class="number">120</span>, <span class="number">150</span>, <span class="number">180</span>, <span class="number">160</span>, <span class="number">200</span>, <span class="number">190</span>, <span class="number">210</span>, <span class="number">230</span>, <span class="number">250</span>, <span class="number">240</span>, <span class="number">260</span>, <span class="number">280</span>)
+
+<span class="function">plot</span>(ventas_mensuales, <span class="keyword">type</span> = <span class="string">"l"</span>)
+
+<span class="function">plot</span>(ventas_mensuales, <span class="keyword">type</span> = <span class="string">"l"</span>, 
+     <span class="keyword">main</span> = <span class="string">"Ventas Mensuales 2024"</span>,
+     <span class="keyword">xlab</span> = <span class="string">"Mes"</span>, 
+     <span class="keyword">ylab</span> = <span class="string">"Ventas (miles €)"</span>,
+     <span class="keyword">col</span> = <span class="string">"blue"</span>,
+     <span class="keyword">lwd</span> = <span class="number">2</span>)
+
+<span class="function">abline</span>(<span class="keyword">h</span> = <span class="function">mean</span>(ventas_mensuales), <span class="keyword">col</span> = <span class="string">"red"</span>, <span class="keyword">lty</span> = <span class="number">2</span>, <span class="keyword">lwd</span> = <span class="number">2</span>)
+<span class="function">legend</span>(<span class="string">"topleft"</span>, <span class="keyword">legend</span> = <span class="function">c</span>(<span class="string">"Ventas"</span>, <span class="string">"Media"</span>), 
+       <span class="keyword">col</span> = <span class="function">c</span>(<span class="string">"blue"</span>, <span class="string">"red"</span>), <span class="keyword">lty</span> = <span class="function">c</span>(<span class="number">1</span>, <span class="number">2</span>))</pre></code>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="ejercicio">
+                    <h3>Ejercicio 6.2: Histogramas</h3>
+                    <ol>
+                        <li>Genera 200 números aleatorios con distribución normal (media=100, sd=15)</li>
+                        <li>Crea un histograma básico</li>
+                        <li>Personaliza con colores y títulos</li>
+                        <li>Añade una línea vertical en la media</li>
+                    </ol>
+                    
+                    <button class="toggle-solucion" onclick="toggleSolucion(this)">Ver Solución</button>
+                    <div class="solucion-contenido">
+                        <div class="solucion">
+                            <div class="solucion-header">
+                                <span>💻 Solución en R</span>
+                                <button class="copy-btn" onclick="copiarCodigo(this)">Copiar</button>
+                            </div>
+                            <code><pre><span class="function">set.seed</span>(<span class="number">123</span>)
+datos <span class="keyword">&lt;-</span> <span class="function">rnorm</span>(<span class="number">200</span>, <span class="keyword">mean</span> = <span class="number">100</span>, <span class="keyword">sd</span> = <span class="number">15</span>)
+
+<span class="function">hist</span>(datos)
+
+<span class="function">hist</span>(datos, 
+     <span class="keyword">main</span> = <span class="string">"Distribución de Puntajes"</span>,
+     <span class="keyword">xlab</span> = <span class="string">"Puntaje"</span>,
+     <span class="keyword">ylab</span> = <span class="string">"Frecuencia"</span>,
+     <span class="keyword">col</span> = <span class="string">"lightblue"</span>,
+     <span class="keyword">border</span> = <span class="string">"darkblue"</span>,
+     <span class="keyword">breaks</span> = <span class="number">20</span>)
+
+<span class="function">abline</span>(<span class="keyword">v</span> = <span class="function">mean</span>(datos), <span class="keyword">col</span> = <span class="string">"red"</span>, <span class="keyword">lwd</span> = <span class="number">2</span>, <span class="keyword">lty</span> = <span class="number">2</span>)</pre></code>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="ejercicio">
+                    <h3>Ejercicio 6.3: Gráficos de barras</h3>
+                    <ol>
+                        <li>Crea datos de productos vendidos: ProductoA=150, B=200, C=180, D=220, E=170</li>
+                        <li>Crea un gráfico de barras vertical</li>
+                        <li>Crea un gráfico de barras horizontal</li>
+                        <li>Personaliza con colores y etiquetas</li>
+                    </ol>
+                    
+                    <button class="toggle-solucion" onclick="toggleSolucion(this)">Ver Solución</button>
+                    <div class="solucion-contenido">
+                        <div class="solucion">
+                            <div class="solucion-header">
+                                <span>💻 Solución en R</span>
+                                <button class="copy-btn" onclick="copiarCodigo(this)">Copiar</button>
+                            </div>
+                            <code><pre>productos <span class="keyword">&lt;-</span> <span class="function">c</span>(<span class="number">150</span>, <span class="number">200</span>, <span class="number">180</span>, <span class="number">220</span>, <span class="number">170</span>)
+<span class="function">names</span>(productos) <span class="keyword">&lt;-</span> <span class="function">c</span>(<span class="string">"Producto A"</span>, <span class="string">"Producto B"</span>, <span class="string">"Producto C"</span>, 
+                       <span class="string">"Producto D"</span>, <span class="string">"Producto E"</span>)
+
+<span class="function">barplot</span>(productos)
+
+<span class="function">barplot</span>(productos, 
+        <span class="keyword">main</span> = <span class="string">"Ventas por Producto"</span>,
+        <span class="keyword">ylab</span> = <span class="string">"Unidades Vendidas"</span>,
+        <span class="keyword">col</span> = <span class="function">rainbow</span>(<span class="number">5</span>),
+        <span class="keyword">border</span> = <span class="string">"black"</span>)
+
+<span class="function">barplot</span>(productos, 
+        <span class="keyword">main</span> = <span class="string">"Ventas por Producto"</span>,
+        <span class="keyword">xlab</span> = <span class="string">"Unidades Vendidas"</span>,
+        <span class="keyword">col</span> = <span class="function">heat.colors</span>(<span class="number">5</span>),
+        <span class="keyword">horiz</span> = <span class="keyword">TRUE</span>,
+        <span class="keyword">las</span> = <span class="number">1</span>)</pre></code>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="ejercicio">
+                    <h3>Ejercicio 6.4: Gráficos de dispersión</h3>
+                    <ol>
+                        <li>Crea dos vectores: horas_estudio (1 a 10) y calificaciones correspondientes</li>
+                        <li>Crea un gráfico de dispersión</li>
+                        <li>Añade una línea de tendencia</li>
+                        <li>Personaliza puntos y colores</li>
+                    </ol>
+                    
+                    <button class="toggle-solucion" onclick="toggleSolucion(this)">Ver Solución</button>
+                    <div class="solucion-contenido">
+                        <div class="solucion">
+                            <div class="solucion-header">
+                                <span>💻 Solución en R</span>
+                                <button class="copy-btn" onclick="copiarCodigo(this)">Copiar</button>
+                            </div>
+                            <code><pre>horas_estudio <span class="keyword">&lt;-</span> <span class="number">1</span>:<span class="number">10</span>
+calificaciones <span class="keyword">&lt;-</span> <span class="function">c</span>(<span class="number">4.5</span>, <span class="number">5.2</span>, <span class="number">5.8</span>, <span class="number">6.5</span>, <span class="number">7.0</span>, <span class="number">7.5</span>, <span class="number">8.2</span>, <span class="number">8.5</span>, <span class="number">9.0</span>, <span class="number">9.3</span>)
+
+<span class="function">plot</span>(horas_estudio, calificaciones)
+
+<span class="function">plot</span>(horas_estudio, calificaciones,
+     <span class="keyword">main</span> = <span class="string">"Relación Horas de Estudio vs Calificación"</span>,
+     <span class="keyword">xlab</span> = <span class="string">"Horas de Estudio"</span>,
+     <span class="keyword">ylab</span> = <span class="string">"Calificación"</span>,
+     <span class="keyword">pch</span> = <span class="number">19</span>,
+     <span class="keyword">col</span> = <span class="string">"blue"</span>,
+     <span class="keyword">cex</span> = <span class="number">1.5</span>)
+
+modelo <span class="keyword">&lt;-</span> <span class="function">lm</span>(calificaciones ~ horas_estudio)
+<span class="function">abline</span>(modelo, <span class="keyword">col</span> = <span class="string">"red"</span>, <span class="keyword">lwd</span> = <span class="number">2</span>)
+
+<span class="function">grid</span>()</pre></code>
                         </div>
                     </div>
                 </div>
@@ -602,6 +1169,43 @@ num2 <span class="keyword">&lt;-</span> <span class="number">38</span>
                     </ol>
                     
                     <button class="toggle-solucion" onclick="toggleSolucion(this)">Ver Solución</button>
+                    <div class="solucion-contenido">
+                        <div class="solucion">
+                            <div class="solucion-header">
+                                <span>💻 Solución en R</span>
+                                <button class="copy-btn" onclick="copiarCodigo(this)">Copiar</button>
+                            </div>
+                            <code><pre><span class="comment"># 1</span>
+<span class="keyword">for</span> (i <span class="keyword">in</span> <span class="number">1</span>:<span class="number">10</span>) {
+  <span class="function">print</span>(i)
+}
+
+<span class="comment"># 2</span>
+<span class="keyword">for</span> (i <span class="keyword">in</span> <span class="function">seq</span>(<span class="number">2</span>, <span class="number">20</span>, <span class="keyword">by</span> = <span class="number">2</span>)) {
+  <span class="function">print</span>(i)
+}
+
+<span class="comment"># 3</span>
+suma <span class="keyword">&lt;-</span> <span class="number">0</span>
+<span class="keyword">for</span> (i <span class="keyword">in</span> <span class="number">1</span>:<span class="number">100</span>) {
+  suma <span class="keyword">&lt;-</span> suma + i
+}
+<span class="function">print</span>(suma)  <span class="comment"># 5050</span>
+
+<span class="comment"># 4</span>
+<span class="keyword">for</span> (i <span class="keyword">in</span> <span class="number">1</span>:<span class="number">10</span>) {
+  <span class="function">print</span>(<span class="function">paste</span>(<span class="string">"7 x"</span>, i, <span class="string">"="</span>, <span class="number">7</span> * i))
+}
+
+<span class="comment"># 5</span>
+cuadrados <span class="keyword">&lt;-</span> <span class="function">numeric</span>(<span class="number">10</span>)
+<span class="keyword">for</span> (i <span class="keyword">in</span> <span class="number">1</span>:<span class="number">10</span>) {
+  cuadrados[i] <span class="keyword">&lt;-</span> i^<span class="number">2</span>
+}
+<span class="function">print</span>(cuadrados)</pre></code>
+                        </div>
+                    </div>
+                </div>
                     <div class="solucion-contenido">
                         <div class="solucion">
                             <div class="solucion-header">
@@ -865,4 +1469,4 @@ matriz_identidad <span class="keyword">&lt;-</span> <span class="function">diag<
                         <li>Suma de cada columna de B</li>
                     </ol>
                     
-                    <button class="toggle-solucion" onclick="toggleSolucion(this)">Ver Solución
+                    <button class="toggle-solucion" onclick="toggleSolucion(this)">Ver Solución</button>
